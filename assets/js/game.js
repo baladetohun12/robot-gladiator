@@ -1,3 +1,11 @@
+// Game States
+// "WIN" -- player has defeated all the enemy-robots
+//  * Fight all enemy-robots
+//  * Defeat all enemy-robots
+// "Lose" -- the enemyrobots have defeated the player, leaving them with zero or no health
+
+
+
 window.alert("Welcome to Robot Gladiators!");
 
 // prompt that will collect player's name
@@ -8,9 +16,16 @@ var playerMoney = 50;
 console.log(playerName, playerHealth, playerAttack, playerMoney);
 
 // enemy data
-var enemyName = "Roborto";
+var enemyName = ["Roborto", "Amy Android", "Robo Trumble", "KITT", "GERTY", "Mega Man", "Doraemon"];
 var enemyHealth = 50;
 var enemyAttack = 12;
+console.log(enemyName, enemyHealth, enemyAttack);
+console.log(enemyName.length);
+for(var i = 0; i < enemyName.length; i++) {
+    console.log(enemyName[i]);
+    console.log(i);
+    console.log(enemyName[i] + " is at " + i + " index");
+  }
 
 window.alert("Welcome " + playerName + "!");
 
@@ -30,20 +45,20 @@ var fight = function() {
         // subtract the value of `playerAttack` from the value of `enemyHealth` and use that result to update the value in the `enemyHealth` variable
         enemyHealth = enemyHealth - playerAttack;
         // log a resulting message to the console so we know that it worked.
-        console.log(playerName + " attacked " + enemyName + ". " + enemyName + " now has " + enemyHealth + " health remaining.");
+        console.log(playerName + " attacked " +  + ". " +  + " now has " + enemyHealth + " health remaining.");
 
         // check enemy's health
         if (enemyHealth <= 0){
-            window.alert(enemyName + " has died!");
+            window.alert( + " has died!");
         }
         else {
-            window.alert(enemyName + " has " + enemyHealth + " health left.");
+            window.alert( + " has " + enemyHealth + " health left.");
         };
         
         // subtract the value of `enemyAttack` from the value of `playerHealth` and use that result to update the value in the `playerHealth` variable.
         playerHealth = playerHealth - enemyAttack;
         // log a resulting message to the console so we know that it worked.
-        console.log(enemyName + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining.");
+        console.log( + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining.");
 
         // check player's health
         if (playerHealth <= 0){
@@ -76,4 +91,4 @@ var fight = function() {
     }
 };
 
-fight();
+// fight(enemyRobot);
