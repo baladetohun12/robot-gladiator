@@ -101,6 +101,16 @@ var startGame = function () {
 
             // call fight function with enemy-robot
             fight (pickedEnemyName);
+
+            if (playerHealth > 0 && i < enemyNames.length - 1) {
+                // ask if player wants to use the store before next round
+                var storeConfirm = window.confirm("The fight is over, visit the store before the next round?");
+
+                // if yes, take them to the store() function
+                if (storeConfirm) {
+                    shop();
+                }
+            }
         }
         
         else {
@@ -122,7 +132,7 @@ var endGame = function() {
         window.alert("Great job, you've survived the game! \nYou are the new Robot Gladiator Champion! \nYou now have a score of " + playerMoney + ".");
     } 
     else {
-        window.alert("You've lost your robot in battle.");
+        window.alert("You've lost your robot in battle. \nFinal stats: \n" + playerMoney + playerAttack);
     }
 
     var playAgainConfirm = window.confirm ("Would you like to play again?");
@@ -136,5 +146,55 @@ var endGame = function() {
     }
 
   };
+
+  var shop = function() {
+    // ask player what they'd like to do
+    var shopOptionPrompt = window.prompt(
+    "Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter one: 'REFILL', 'UPGRADE', or 'LEAVE' to make a choice.");
+    
+    switch (shopOptionPrompt) {
+        case "refill" : "REFILL" ;
+            if (playerMoney >= 7) {
+                window.alert("You just took a potion for 20 health for 7 coins!");
+
+                playerHealth = playerHealth + 35;
+                playerMoney = playerMoney - 7;
+                window.alert("Thank's for doing business! Come again champ!");
+
+            }
+            else {
+                window.alert("Sorry. Unfortunately you do not have enough coin to fulfill this purchase.")
+            }
+
+            break;
+
+        case "upgrade" : "UPGRADE" ;
+            if (playerMoney >= 7) {   
+                window.alert("You've just upgraded your attack 6 points for 7 coins!");
+
+                playerAttack = playerAttack + 5;
+                playerMoney = playerMoney - 7;
+                window.alert("Hope to see you at the end of the next round!");
+            }
+            else {
+                window.alert("You do not have enough coins to upgrade.")
+            }
+            
+            break;
+        
+        case "leave" : "LEAVE" ;
+            window.alert("You are now exiting the shop. Good luck!");
+
+            break;
+    
+        default:
+            window.alert ("A valid selection was not made, please try again.");
+
+            shop();
+            break;
+
+    }
+
+};
   
 startGame ();
